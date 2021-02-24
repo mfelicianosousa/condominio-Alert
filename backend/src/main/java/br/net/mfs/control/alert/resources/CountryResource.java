@@ -9,19 +9,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.net.mfs.control.alert.entities.Company;
-import br.net.mfs.control.alert.services.CompanyService;
+import br.net.mfs.control.alert.entities.Country;
+import br.net.mfs.control.alert.services.CountryService;
 
-@RestController
-@RequestMapping(value="/companies")
-public class CompanyResource {
+@RestController 
+@RequestMapping(value="/countries")
+public class CountryResource {
 	
-	@Autowired 
-	private CompanyService service ;
-
+	@Autowired
+    private CountryService service ;
+    
 	@GetMapping
-	public ResponseEntity< List<Company>> findAll(){
-		List<Company> list = service.findAll();
+	public ResponseEntity< List<Country>> findAll(){
+		List<Country> list = service.findAll() ;
+		
 		return ResponseEntity.ok().body(list) ;
-	}	
+		
+		
+	}
+
 }
