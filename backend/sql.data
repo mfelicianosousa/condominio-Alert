@@ -1,0 +1,32 @@
+{
+	"lotes": [
+	{
+		idLote: "202010C",
+			lote: [
+			{
+				"idLinha": "1",
+				"codEvento": "",
+				"descrEvento": "",
+				"codEmpresa": "1",
+				"dtEnvio": "20210205",
+				"dtEvento": "20210205",
+				"contaContabilCredito": "21301000",
+				"contaContabilDebito": "41101001",
+				"centroCusto": "4444",
+				"valorLiquido": "1893864,98"
+			}],
+			Lote: [
+            {
+				"idLinha": "2",
+				"codEvento": "2002",
+				"descrEvento": "ABONO ATESTADO MEDICO",
+				"codEmpresa": "",
+				"dtEnvio": "",
+				"dtEvento": "20210205",
+				"contaContabilCredito": "21301000",
+				"contaContabilDebito": "41101001",
+				"centroCusto": "4444",
+				"valorLiquido": "17721,73"
+			}]
+    }]
+}

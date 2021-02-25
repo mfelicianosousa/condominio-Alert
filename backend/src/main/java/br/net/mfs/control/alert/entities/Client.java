@@ -1,12 +1,21 @@
+/**
+ * 
+ *    @author : Marcelino Feliciano de Sousa
+ *    date: 23/02/2021
+ * 	  Remarks :	Cadastro de Clientes (Clients)
+ *
+ */
 package br.net.mfs.control.alert.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name="TB_CLIENT")
@@ -17,6 +26,8 @@ public class Client implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+	
+	@Column(length=60, nullable=false)
 	private String name ;
 	
 	public Client() {

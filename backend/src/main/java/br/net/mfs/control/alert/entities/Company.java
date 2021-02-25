@@ -1,7 +1,16 @@
+/**
+ * 
+ *    @author : Marcelino Feliciano de Sousa
+ *    date: 22/02/2021
+ * 	  Remarks :	Cadastro de Empresas (Company)
+ *
+ */
+
 package br.net.mfs.control.alert.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,6 +26,9 @@ public class Company implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+	
+
+	@Column(length=50)
 	private String name ;
 	
 	public Company() {

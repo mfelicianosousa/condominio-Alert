@@ -1,7 +1,15 @@
+/**
+ * 
+ *    @author : Marcelino Feliciano de Sousa
+ *    date: 23/02/2021
+ * 	  Remarks :	Cadastro de Municipios (Country)
+ */
+
 package br.net.mfs.control.alert.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -11,9 +19,16 @@ public class Country implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
+	@Column(length=11)
 	private String codeIBGE ;
+
+	@Column(length=60)
 	private String name ;
+	
+	@Column(length=2)
 	private String uf ;
+	
+	@Column(length=4)
 	private String timezones ;
 	
 	

@@ -1,7 +1,16 @@
+/**
+ * 
+ *    @author : Marcelino Feliciano de Sousa
+ *    date: 23/02/2021
+ * 	  Remarks :	Cadastro de Categorias (Category)
+ *
+ */
 package br.net.mfs.control.alert.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,7 +26,15 @@ public class Category implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id ;
+	
+	@Column(length=50, nullable=false)
 	private String name ;
+	
+	@Column(columnDefinition="DATE DEFAULT CURRENT_DATE")
+	private Date createdon ;
+	
+	@Column(columnDefinition="DATE DEFAULT CURRENT_DATE")
+	private Date modifiedon ;
 	
 	public Category() {
 		
@@ -43,6 +60,24 @@ public class Category implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	
+	public Date getCreatedon() {
+		return createdon;
+	}
+
+	public void setCreatedon(Date createdon) {
+		this.createdon = createdon;
+	}
+
+	public Date getModifiedon() {
+		return modifiedon;
+	}
+
+	public void setModifiedon(Date modifiedon) {
+		this.modifiedon = modifiedon;
+	}
+	
 
 	@Override
 	public int hashCode() {

@@ -1,10 +1,14 @@
 package br.net.mfs.control.alert.services;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import br.net.mfs.control.alert.dto.FederalStateDTO;
 import br.net.mfs.control.alert.entities.FederalState;
 import br.net.mfs.control.alert.repositories.FederalStateRepository;
 
@@ -14,8 +18,20 @@ public class FederalStateService {
 	@Autowired
 	private FederalStateRepository repository ;
 	
-	public List<FederalState> findAll(){
+	@Transactional(readOnly=true)
+	public List<FederalStateDTO> findAll(){
 		
-		return repository.findAll() ;
+		
+		List<FederalState> list = repository.findAll() ;
+		
+		return  list.stream().map( x -> new FederalStateDTO( x ) ).collect( Collectors.toList()) ;
+	}
+	
+	@Transactional(readOnly=true)
+	public FederalStateDTO findById(String id) {
+		
+		Optional<FederalState> obj = repository.findById(id);	
+		FederalState entity = obj.get() ;
+		return new FederalStateDTO( entity );
 	}
 }

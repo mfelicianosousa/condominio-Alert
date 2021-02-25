@@ -1,10 +1,14 @@
 package br.net.mfs.control.alert.services;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import br.net.mfs.control.alert.dto.RoleDTO;
 import br.net.mfs.control.alert.entities.Role;
 import br.net.mfs.control.alert.repositories.RoleRepository;
 
@@ -14,8 +18,18 @@ public class RoleService {
 	@Autowired
 	private RoleRepository repository ;
 	
-	public List<Role> findAll(){
+	@Transactional(readOnly=true)
+	public List<RoleDTO> findAll(){
+	List<Role> list = repository.findAll() ;
+
+		return  list.stream().map( x -> new RoleDTO( x ) ).collect( Collectors.toList()) ;
+	}
+	
+	@Transactional(readOnly=true)
+	public RoleDTO findById(Long id) {
 		
-		return repository.findAll();
+		Optional<Role> obj = repository.findById(id);	
+		Role entity = obj.get() ;
+		return new RoleDTO( entity );
 	}
 }
