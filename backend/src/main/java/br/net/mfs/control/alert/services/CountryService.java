@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import br.net.mfs.control.alert.dto.CountryDTO;
 import br.net.mfs.control.alert.entities.Country;
 import br.net.mfs.control.alert.repositories.CountryRepository;
+import br.net.mfs.control.alert.services.exception.EntityNotFoundException;
 
 @Service 
 public class CountryService {
@@ -31,7 +32,7 @@ public class CountryService {
 	public CountryDTO findById(String id) {
 		
 		Optional<Country> obj = repository.findById(id);	
-		Country entity = obj.get() ;
+		Country entity = obj.orElseThrow(()-> new EntityNotFoundException("Entity not Found")) ;
 		return new CountryDTO( entity );
 	}
 

@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import br.net.mfs.control.alert.dto.RoleDTO;
 import br.net.mfs.control.alert.entities.Role;
 import br.net.mfs.control.alert.repositories.RoleRepository;
+import br.net.mfs.control.alert.services.exception.EntityNotFoundException;
 
 @Service
 public class RoleService {
@@ -29,7 +30,7 @@ public class RoleService {
 	public RoleDTO findById(Long id) {
 		
 		Optional<Role> obj = repository.findById(id);	
-		Role entity = obj.get() ;
+		Role entity = obj.orElseThrow(()-> new EntityNotFoundException("Entity not Found")) ;
 		return new RoleDTO( entity );
 	}
 }

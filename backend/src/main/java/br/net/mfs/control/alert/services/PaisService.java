@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import br.net.mfs.control.alert.dto.PaisDTO;
 import br.net.mfs.control.alert.entities.Pais;
 import br.net.mfs.control.alert.repositories.PaisRepository;
+import br.net.mfs.control.alert.services.exception.EntityNotFoundException;
 
 @Service
 public class PaisService {
@@ -29,7 +30,7 @@ public class PaisService {
 	public PaisDTO findById(Long id) {
 		
 		Optional<Pais> obj = repository.findById(id);	
-		Pais entity = obj.get() ;
+		Pais entity = obj.orElseThrow(()-> new EntityNotFoundException("Entity not Found")) ;
 		return new PaisDTO( entity );
 	}
 	

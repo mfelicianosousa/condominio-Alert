@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import br.net.mfs.control.alert.dto.UserDTO;
 import br.net.mfs.control.alert.entities.User;
 import br.net.mfs.control.alert.repositories.UserRepository;
+import br.net.mfs.control.alert.services.exception.EntityNotFoundException;
 
 @Service
 public class UserService {
@@ -29,7 +30,7 @@ public class UserService {
 	public UserDTO findById(Long id) {
 		
 		Optional<User> obj = repository.findById(id);	
-		User entity = obj.get() ;
+		User entity = obj.orElseThrow(()-> new EntityNotFoundException("Entity not Found")) ;
 		return new UserDTO( entity );
 	}
 }

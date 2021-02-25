@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import br.net.mfs.control.alert.dto.FederalStateDTO;
 import br.net.mfs.control.alert.entities.FederalState;
 import br.net.mfs.control.alert.repositories.FederalStateRepository;
+import br.net.mfs.control.alert.services.exception.EntityNotFoundException;
 
 @Service
 public class FederalStateService {
@@ -31,7 +32,7 @@ public class FederalStateService {
 	public FederalStateDTO findById(String id) {
 		
 		Optional<FederalState> obj = repository.findById(id);	
-		FederalState entity = obj.get() ;
+		FederalState entity = obj.orElseThrow(()-> new EntityNotFoundException("Entity not Found")) ;
 		return new FederalStateDTO( entity );
 	}
 }

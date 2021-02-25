@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import br.net.mfs.control.alert.dto.CompanyDTO;
 import br.net.mfs.control.alert.entities.Company;
 import br.net.mfs.control.alert.repositories.CompanyRepository;
+import br.net.mfs.control.alert.services.exception.EntityNotFoundException;
 
 @Service
 public class CompanyService {
@@ -31,7 +32,7 @@ public class CompanyService {
 		public CompanyDTO findById(Long id) {
 			
 			Optional<Company> obj = repository.findById(id);	
-			Company entity = obj.get() ;
+			Company entity = obj.orElseThrow(()-> new EntityNotFoundException("Entity not Found")) ; ;
 			return new CompanyDTO( entity );
 		}
 	

@@ -13,6 +13,7 @@ import br.net.mfs.control.alert.dto.PessoaDTO;
 import br.net.mfs.control.alert.entities.Company;
 import br.net.mfs.control.alert.entities.Pessoa;
 import br.net.mfs.control.alert.repositories.PessoaRepository;
+import br.net.mfs.control.alert.services.exception.EntityNotFoundException;
 
 @Service
 public class PessoaService {
@@ -31,7 +32,7 @@ public class PessoaService {
 	public PessoaDTO findById(Long id) {
 		
 		Optional<Pessoa> obj = repository.findById(id);	
-		Pessoa entity = obj.get() ;
+		Pessoa entity = obj.orElseThrow(()-> new EntityNotFoundException("Entity not Found")) ;
 		return new PessoaDTO( entity );
 	}
 

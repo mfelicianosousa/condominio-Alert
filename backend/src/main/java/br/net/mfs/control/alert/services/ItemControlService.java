@@ -13,6 +13,7 @@ import br.net.mfs.control.alert.dto.ItemControlDTO;
 import br.net.mfs.control.alert.entities.Company;
 import br.net.mfs.control.alert.entities.ItemControl;
 import br.net.mfs.control.alert.repositories.ItemControlRepository;
+import br.net.mfs.control.alert.services.exception.EntityNotFoundException;
 
 @Service
 public class ItemControlService {
@@ -33,7 +34,7 @@ public class ItemControlService {
 	public ItemControlDTO findById(Long id) {
 		
 		Optional<ItemControl> obj = repository.findById(id);	
-		ItemControl entity = obj.get() ;
+		ItemControl entity = obj.orElseThrow(()-> new EntityNotFoundException("Entity not Found")) ;
 		return new ItemControlDTO( entity );
 	}
 }
